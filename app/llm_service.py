@@ -42,8 +42,6 @@ SYSTEM_PROMPT = """Ты — профессиональный B2B-копирай�
 async def generate_product_card(product_data: dict) -> str:
     user_prompt = f"Сгенерируй карточку для следующего товара:\n{json.dumps(product_data, ensure_ascii=False, indent=2)}"
 
-    print("--- ОТПРАВЛЯЕМ ЗАПРОС В OPENROUTER ---")
-
     try:
         response = await client.chat.completions.create(
             model="nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -53,8 +51,7 @@ async def generate_product_card(product_data: dict) -> str:
             ],
             temperature=0.2
         )
-        print("--- ОТВЕТ ПОЛУЧЕН ---")
-        print(f"--- ОТВЕТИЛА МОДЕЛЬ: {response.model} ---")
+
         return response.choices[0].message.content
 
     except Exception as e:

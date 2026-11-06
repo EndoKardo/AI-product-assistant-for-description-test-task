@@ -1,5 +1,5 @@
 import json
-from fastapi import FastAPI, Form, HTTPException
+from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse
 from app.schemas import ProductInput
 from app.llm_service import generate_product_card
